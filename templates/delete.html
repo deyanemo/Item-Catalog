@@ -1,0 +1,15 @@
+{% include 'styles.html'%}
+{% include 'flash.html'%}
+{%if login['logged'] == 'loggedin' %}
+<div class="deltebox">
+    <p>Are you sure you wanna do this ? </p>
+    <form action="" method="POST">
+        <input type="submit" value="am sure">
+    </form>
+</div>
+{% else%}
+
+<h1>Please Login first <a href="{{url_for('LoginUser')}}">here</a></h1>
+
+
+{%endif%}

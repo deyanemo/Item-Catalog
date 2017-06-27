@@ -1,0 +1,31 @@
+    <div class="flash">
+        <div class="header">
+            <h1><a href="/">Catalog</a></h1>
+            <h3>ITEMS</h3>
+        </div>
+        <div class="flashs">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+
+        </div>
+            {% if login['logged'] == 'loggedin' %}
+    <div class="user">
+        <img src="{{login['avatar']}}" class="avatar">
+        <p class="username">{{login['username']}}</p>
+        <p class="logout"> <a href="{{url_for('logout', login_session=login_session)}}">Logout</a></p>
+    </div>
+    {% else%}
+    <div class="user">
+    <div class="loginBtn"><a href="{{url_for('LoginUser')}}"><p>login</p></a></div>
+    </div>
+    {%endif%}
+</div>
+    </div>

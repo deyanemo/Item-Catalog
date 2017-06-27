@@ -1,0 +1,15 @@
+{% include 'styles.html'%}
+{% include 'flash.html'%}
+{% if login['logged'] == 'loggedin' %}
+
+<div class="catcenterbox">
+    <div class="input-group">
+        <form action="" method="POST">
+            <input type="text" name="cat_name" class="form-control" required placeholder="Category Name">
+            <input type="submit" name="submit" value="add category" class="form-control">
+        </form>
+    </div>
+</div>
+{%else%}
+<p>Please login to continue <a href="{{url_for('LoginUser')}}">Here</a></p>
+{%endif%}

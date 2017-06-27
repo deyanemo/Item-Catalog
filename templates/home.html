@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'styles.html'%}
+    {% if login['logged'] == 'loggedin' %}
+    <title>Welcome  {{login['username']}}</title>
+
+</head>
+<body>
+    {% include 'flash.html' %}
+
+    <div class="user">
+        <img src="{{login['avatar']}}" class="avatar">
+        <p class="username">{{login['username']}}</p>
+        <p class="logout"> <a href="{{url_for('logout', login_session=login_session)}}">Logout</a></p>
+    </div>
+</div>
+{% include 'content.html' %}
+<div class="addbox">
+    <a href="{{url_for('addItem')}}">add Item</a> |
+    <a href="{{url_for('addCategory')}}">add Category</a>
+</div>
+{% else%}
+
+{% include 'flash.html' %}
+
+{% include 'content.html' %}
+
+{%endif%}
+</body>
+</html>

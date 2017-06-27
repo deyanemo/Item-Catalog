@@ -1,0 +1,22 @@
+{% include 'styles.html'%}
+{% include 'flash_.html'%}
+{%if login['logged'] == 'loggedin' %}
+<div class="centerbox">
+    <div class="input-group">
+        <form action="" method="POST">
+            <input type="text" name="item_name" class="form-control" required placeholder="{{item.item_name}}">
+            <input type="text" name="item_img" class="form-control" required placeholder="{{item.item_img}}">
+            <textarea name="item_description" row="5" class="form-control" required placeholder="{{item.item_description}}"></textarea>
+            <select class="form-control" name="options">
+                {% for cat in categ%}
+                <option value="{{cat.cat_id}}" name='{{cat.name}}'>{{cat.cat_name}}</option>
+                {%endfor%}
+            </select>
+            <input type="submit" name="submit" value="Change item" class="form-control">
+        </form>
+    </div>
+</div>
+{% else%}
+
+<h1>Please Login first <a href="{{url_for('LoginUser')}}">here</a></h1>
+{%endif%}

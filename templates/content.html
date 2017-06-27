@@ -1,0 +1,14 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 blue">
+            <h1 class="heading">Category</h1>
+            {% include 'categories.html' %}
+            </div>
+            <div class="col-sm-9 red">
+            <h3 class="heading">{{itemTitle}}</h3>
+            <ul>
+            {% include 'Items.html' %}
+            </ul>
+            </div>
+        </div>
+    </div>

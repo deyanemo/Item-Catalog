@@ -1,0 +1,21 @@
+{% include 'styles.html'%}
+{% include 'flash.html'%}
+<div class="container">
+    <div class="container-fluid">
+        <h1>{{item.item_name}}</h1>
+        <div class="itemimg">
+            <img src="{{item.item_img}}" class="showcase img-responsive">
+        </div>
+        <div class="description">
+            <p>{{item.item_description}}</p>
+        </div>
+    </div>
+    {% if login['logged'] == 'loggedin'%}
+    <div class="userOptions">
+    <a href="/catalog/{{item.item_id}}/edit">Edit</a> |
+        <a href="/catalog/{{item.item_id}}/delete">Delete</a>
+    </div>
+
+    {%endif%}
+</div>
+

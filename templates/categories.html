@@ -1,0 +1,5 @@
+<ul>
+{% for cat in categ%}
+    <li><a href="/show/category/items/{{cat.cat_id}}">{{cat.cat_name}}</a></li>
+{%endfor%}
+</ul>

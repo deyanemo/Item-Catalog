@@ -1,0 +1,8 @@
+<ul>
+{% for item in items%}
+<li>
+
+<a href="/show/item/{{item.item_id}}">{{item.item_name}}</a>
+</li>
+{%endfor%}
+</ul>

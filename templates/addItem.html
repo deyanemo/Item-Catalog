@@ -1,0 +1,22 @@
+{% include 'styles.html'%}
+{% include 'flash.html'%}
+    {% if login['logged'] == 'loggedin' %}
+<div class="centerbox">
+    <div class="input-group">
+        <form action="" method="POST">
+            <input type="text" name="item_name" class="form-control" required placeholder="item name">
+            <input type="text" name="item_img" class="form-control" placeholder="Default : http://lorempixel.com/400/200/fashion/">
+            <textarea name="item_description" row="5" class="form-control" required placeholder="item description"></textarea>
+            <select class="form-control" name="options">
+                {% for cat in categ %}
+                <option value="{{cat.cat_id}}">{{cat.cat_name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="submit" value="add item" class="form-control">
+        </form>
+    </div>
+</div>
+
+{%else%}
+<p>Please login to continue <a href="{{url_for('LoginUser')}}">Here</a></p>
+{%endif%}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Please</title>
+{% include 'styles.html'%}
+</head>
+<body>
+    <div class="flash">
+        <div class="flashs">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+
+
+    <div class="Register">
+        <h1>Create an Acount</h1>
+        <form action="" method="POST">
+            <p>
+            <input type="text" class="form-control" name="username" placeholder="UserName" required></p>
+            <p><input type="password" class="form-control" name="password" placeholder="Password" required></p>
+            <p><input type="submit" class="form-control" value="Create Acount"></p>
+        </form>
+    </div>
+</form>
+</body>
+</html>
