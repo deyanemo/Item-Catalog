@@ -44,7 +44,7 @@ install the python Prerequisites provided
 in order to run the script
 
 ```
-pip install -r config.sh
+sudo ./config.sh
 ```
 at last run the script:
 
