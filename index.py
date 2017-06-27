@@ -260,6 +260,12 @@ def addCategory():
     return render_template('addCategory.html', login=login_session)
 
 
+@app.route('/help', methods=['GET'])
+def help():
+    return render_template('help.html')
+
+
+
 @app.route('/show/category/items/<int:cat_id>', methods=['GET', 'POST'])
 def showCatItems(cat_id):
     categ = session.query(Category).all()
