@@ -21,7 +21,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     username = Column(String(54), nullable=False)
-    password = Column(String(54), nullable=False)
+    password = Column(String(100), nullable=False)
     avatar = Column(String(250), nullable=False)
 
 
@@ -30,6 +30,7 @@ class Category(Base):
     __tablename__ = 'category'
     cat_id = Column(Integer, primary_key=True)
     cat_name = Column(String(75), nullable=False)
+    cat_u = Column(Integer)
 
     @property
     def serialize(self):
@@ -48,6 +49,8 @@ class Item(Base):
     item_description = Column(String, nullable=False)
     item_img = Column(String, nullable=False)
     item_cat = Column(String, ForeignKey('category.cat_id'))
+    item_u = Column(Integer, ForeignKey('users.id'))
+
 
     @property
     def serialize(self):
