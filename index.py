@@ -51,6 +51,7 @@ def registerUser():
             if checkUser == 0:
                 # Check if user is not in the database already
                 try:
+                    # commitin the changes
                     new = User(username=user, password=md5Hasher(pswd),
                                avatar='https://cdn1.iconfinder.com/data/\
                                icons/mix-color-4/502/Untitled-1-512.png')
@@ -127,6 +128,7 @@ def home():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    # checking the given state
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -134,6 +136,7 @@ def gconnect():
     code = request.data
 
     try:
+        # authorization Code from google
         oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
@@ -144,6 +147,7 @@ def gconnect():
         return response
 
     access_token = credentials.access_token
+    # checking the access token
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
     h = httplib2.Http()
@@ -159,14 +163,14 @@ def gconnect():
             json.dumps("Token's user ID doesn't match given user ID."), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-
+# checking the cient ID
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
         print "Token's client ID does not match app's."
         response.headers['Content-Type'] = 'application/json'
         return response
-
+# checking if the credintials are already stored
     stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
@@ -176,6 +180,7 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         flash("Current user is already connected.")
         return redirect(url_for('logout', login=login_session))
+# if not then assign the variables
     login_session['access_token'] = credentials.access_token
     login_session['credentials'] = credentials.to_json()
     login_session['gplus_id'] = gplus_id
